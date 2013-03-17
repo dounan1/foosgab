@@ -14,9 +14,10 @@
     <% @players.each do |player| %>
     <tr>
       <td><%= player.name %></td>
-      <td><%= link_to 'Show', player %></td>
-      <td><%= link_to 'Edit', edit_player_path(player) %></td>
-      <td><%= link_to 'Destroy', player, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td><%= link_to 'Show', player, class: 'btn btn-primary' %></td>
+      <td><%= link_to edit_player_path(player), class: 'btn' do %><i class="icon icon-pencil"></i> Edit<% end %></td>
+      <td><%= link_to player, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' } do %>
+        <i class="icon icon-white icon-trash"></i> Delete<% end %></td>
     </tr>
     <% end %>
   </tbody>
@@ -24,4 +25,4 @@
 
 <br />
 
-<%= link_to 'New Player', new_player_path %>
+<%= link_to 'New Player', new_player_path, class: 'btn btn-success' %>
