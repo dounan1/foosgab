@@ -12,6 +12,14 @@ class Team
   validates_presence_of :defense, if: :is_team?
   validates_presence_of :player, if: :is_solo?
   validates_numericality_of :score
+
+  def players
+    is_solo? ? player : [offense, defense]
+  end
+  
+  def unique_players?
+    is_solo? ? true : players.uniq.length == players.length
+  end
   
   def is_solo?
     game.solo
