@@ -1,5 +1,6 @@
 class Team
   include Mongoid::Document
+  field :score, type: Integer, default: 0
   
   embedded_in :game, inverse_of: :red
   embedded_in :game, inverse_of: :blue  
@@ -10,10 +11,8 @@ class Team
   validates_presence_of :offense, if: :is_team?
   validates_presence_of :defense, if: :is_team?
   validates_presence_of :player, if: :is_solo?
+  validates_numericality_of :score
   
-  # attr_accessible :offense, :defense, :player
-  
-  # private
   def is_solo?
     game.solo
   end
