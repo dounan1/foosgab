@@ -1,0 +1,27 @@
+<h1>Listing games</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Red Offense</th>
+      <th>Red Defense</th>
+      <th>Blue Offense</th>
+      <th>Blue Defense</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @games.each do |game| %>
+    <tr>
+      <td><%= link_to game.red.offense.name, game.red.offense unless game.red.offense.nil? %></td>
+      <td><%= link_to game.red.defense.name, game.red.defense unless game.red.defense.nil?  %></td>
+      <td><%= link_to game.blue.offense.name, game.blue.offense unless game.blue.offense.nil?  %></td>
+      <td><%= link_to game.blue.defense.name, game.blue.defense unless game.blue.defense.nil?  %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br />
+
+<%= link_to 'New game', new_game_path, class: 'btn btn-success' %>

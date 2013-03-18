@@ -4,6 +4,7 @@ gem 'rails', '4.0.0.beta1'
 gem 'mongoid', github: 'mongoid/mongoid'
 gem 'bson_ext'
 gem 'mongoid_slug', github: 'digitalplaywright/mongoid-slug'
+gem 'simple_form'
 
 group :assets do
   gem 'sass-rails',   '~> 4.0.0.beta1'

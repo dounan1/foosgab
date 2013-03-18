@@ -1,0 +1,10 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @player.name %>
+</p>
+
+
+<%= link_to edit_player_path(@player), class: 'btn' do%><i class="icon icon-pencil"></i> Edit<% end %>
+<%= link_to 'Back', players_path, class: 'btn' %>
