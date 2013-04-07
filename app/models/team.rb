@@ -14,7 +14,7 @@ class Team
   validates_numericality_of :score
 
   def players
-    is_solo? ? player : [offense, defense]
+    is_solo? ? [player] : [offense, defense]
   end
   
   def unique_players?
