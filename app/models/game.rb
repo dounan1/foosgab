@@ -9,6 +9,9 @@ class Game
   accepts_nested_attributes_for :red, :blue
   validates_presence_of :date
   
+  scope :full, -> { Game.or({'red.score' => 10}, {'blue.score' => 10}) }
+  scope :partial, -> { Game.where({'red.score' => {'$lt' => 10}}).union.where({'blue.score' => {'$lt' => 10}}) }
+  
   before_create do
     self.date ||= Date.today
   end
@@ -39,5 +42,9 @@ class Game
   
   def solo?
     solo
+  end
+  
+  def team_with_player(player)
+    red.players.include?(player) ? red : blue
   end
 end

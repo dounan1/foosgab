@@ -2,10 +2,15 @@ class Player
   include Mongoid::Document
   include Mongoid::Slug
   field :name, type: String
+  field :type, type: String
   slug :name
 
-  def percentage
-    ((wins + 0.5 * ties) / (wins + losses + ties)) * 100
+  validates_presence_of :name, :type
+
+  def win_pct
+    num = BigDecimal.new(wins + 0.5 * ties, 5)
+    den = BigDecimal.new(wins + losses + ties)
+    (num / den).round(2)
   end
 
   def games
@@ -13,7 +18,6 @@ class Player
     # then scope the rest of win/loss/etc as well
     Game.or({ "red.player_id" => _id }, { "red.offense_id" => _id }, { "red.defense_id" => _id },
       { "blue.player_id" => _id }, { "blue.offense_id" => _id }, { "blue.defense_id" => _id })
-    # Game.or(Hash[["red.player_id", "red.offense_id", "red.defense_id", "blue.player_id", "blue.offense_id", "blue.defense_id"].map {|k| [k,_id]}])
   end
   
   def games_won
@@ -38,6 +42,12 @@ class Player
 
   def ties
     games_tied.count
+  end
+  
+  def average_score
+    total = BigDecimal.new(games.inject(0) { |sum,g| sum + g.team_with_player(self).score })
+    played = BigDecimal.new(games.count)
+    (total / played).round(2)
   end
 
 end
