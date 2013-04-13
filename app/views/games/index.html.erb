@@ -6,9 +6,9 @@
       <th>Permalink</th>
       <th>Red Offense</th>
       <th>Red Defense</th>
+      <th>Red Score</th>
       <th>Blue Offense</th>
       <th>Blue Defense</th>
-      <th>Red Score</th>
       <th>Blue Score</th>
       <th>Edit</th>
       <th>Delete</th>
@@ -16,20 +16,7 @@
   </thead>
 
   <tbody>
-    <% @games.each do |game| %>
-    <tr>
-      <td><%= link_to 'Show', game, class: 'btn' %>
-      <td><%= link_to game.red.offense.name, game.red.offense unless game.red.offense.nil? %></td>
-      <td><%= link_to game.red.defense.name, game.red.defense unless game.red.defense.nil? %></td>
-      <td><%= link_to game.blue.offense.name, game.blue.offense unless game.blue.offense.nil? %></td>
-      <td><%= link_to game.blue.defense.name, game.blue.defense unless game.blue.defense.nil? %></td>
-      <td><%= game.red.score %></td>
-      <td><%= game.blue.score %></td>
-      <td><%= link_to edit_game_path(game), class: 'btn' do %><i class="icon icon-pencil"></i> Edit<% end %></td>
-      <td><%= link_to game, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' } do %>
-        <i class="icon icon-white icon-trash"></i> Delete<% end %></td>
-    </tr>
-    <% end %>
+    <%= render partial: 'game', collection: @games %>
   </tbody>
 </table>
 

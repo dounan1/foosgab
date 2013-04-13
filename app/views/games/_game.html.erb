@@ -1,0 +1,11 @@
+<tr>
+  <td><%= link_to 'Show', game, class: 'btn' %></td>
+
+  <% red_wins = (game.winner == game.red) %>
+  <%= render 'game_team', team: game.red, result: (game.winner.nil? ? 'tie' : red_wins ? 'winner' : 'loser') %>
+  <%= render 'game_team', team: game.blue, result: (game.winner.nil? ? 'tie' : red_wins ? 'loser' : 'winner') %>
+
+  <td><%= link_to edit_game_path(game), class: 'btn' do %><i class="icon icon-pencil"></i> Edit<% end %></td>
+  <td><%= link_to game, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' } do %>
+    <i class="icon icon-white icon-trash"></i> Delete<% end %></td>
+</tr>

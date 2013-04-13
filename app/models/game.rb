@@ -18,4 +18,20 @@ class Game
   def unique_players?
     players.uniq.length == players.length
   end
+  
+  def winner
+    [red,blue].max unless tie?
+  end
+  
+  def loser
+    [red,blue].min unless tie?
+  end
+  
+  def tie?
+    red.score == blue.score
+  end
+  
+  def solo?
+    solo
+  end
 end

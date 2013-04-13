@@ -1,0 +1,7 @@
+<% if team.solo? %>
+  <td colspan="2"><%= link_to team.player.name, team.player %></td>
+<% else %>
+  <td><%= link_to team.offense.name, team.offense if team.offense.present? %></td>
+  <td><%= link_to team.defense.name, team.defense unless team.defense.nil? %></td>
+<% end %>
+<td><%= content_tag :span, team.score, class: "score #{result}" %></td>

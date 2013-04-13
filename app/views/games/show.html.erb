@@ -1,28 +1,28 @@
 <p id="notice"><%= notice %></p>
 
-<table>
+<h1>It's a game</h1>
+
+<table class="table table-bordered">
   <thead>
     <tr>
+      <th>Permalink</th>
       <th>Red Offense</th>
       <th>Red Defense</th>
+      <th>Red Score</th>
       <th>Blue Offense</th>
       <th>Blue Defense</th>
-      <th>Red Score</th>
       <th>Blue Score</th>
+      <th>Edit</th>
+      <th>Delete</th>
     </tr>
   </thead>
 
   <tbody>
-    <tr>
-      <td><%= link_to @game.red.offense.name, @game.red.offense unless @game.red.offense.nil? %></td>
-      <td><%= link_to @game.red.defense.name, @game.red.defense unless @game.red.defense.nil?  %></td>
-      <td><%= link_to @game.blue.offense.name, @game.blue.offense unless @game.blue.offense.nil?  %></td>
-      <td><%= link_to @game.blue.defense.name, @game.blue.defense unless @game.blue.defense.nil?  %></td>
-      <td><%= @game.red.score %></td>
-      <td><%= @game.blue.score %></td>
-    </tr>
+    <%= render 'game', game: @game %>
   </tbody>
 </table>
+
+<br />
 
 
 <%= link_to edit_game_path(@game), class: 'btn' do%><i class="icon icon-pencil"></i> Edit<% end %>
