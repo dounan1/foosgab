@@ -2,7 +2,7 @@
 
 <h2><%= @player.name %>'s games</h2>
 
-<%= content_tag :p, "#{@player.games.count} total games, with #{@player.wins} wins, #{@player.losses} losses and #{@player.ties} ties" %>
+<%= content_tag :p, "#{pluralize(@player.games.count, 'game')}, with #{pluralize(@player.wins, 'win')}, #{pluralize(@player.losses, 'loss')} and #{pluralize(@player.ties, 'tie')}" %>
 
 <table class="table table-bordered">
   <thead>
@@ -21,9 +21,7 @@
   </thead>
 
   <tbody>
-    <% @player.games.each do |g|%>
-      <%= render 'games/game', game: g, active: @player %>
-    <% end %>
+    <%= render partial: 'games/game', collection: @player.games, locals: {active: @player} %>
   </tbody>
 </table>
 
