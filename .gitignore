@@ -3,3 +3,6 @@
 /tmp
 /.rvmrc
 /.powrc
+/.ruby-version
+/.ruby-gemset
+/.powenv
