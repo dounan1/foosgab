@@ -1,15 +1,27 @@
 <% if team.solo? %>
+
   <%= content_tag :td, class: "#{result}-cell", colspan: '2' do %>  
-    <%= link_to team.player.name, team.player if team.player.present? %>
+    <%= link_to team.player do %>
+      <%= (active.present? && active._id == team.player._id) ? content_tag(:strong, team.player.name) : team.player.name %>
+    <% end %>
   <% end %>
+
 <% else %>
+
   <%= content_tag :td, class: "#{result}-cell" do %>  
-    <%= link_to team.offense.name, team.offense if team.offense.present? %>
+    <%= link_to team.offense do %>
+      <%= (active.present? && active._id == team.offense._id) ? content_tag(:strong, team.offense.name) : team.offense.name %>
+    <% end %>
   <% end %>
+
   <%= content_tag :td, class: "#{result}-cell" do %>  
-    <%= link_to team.defense.name, team.defense if team.defense.present? %>
+    <%= link_to team.defense do %>
+      <%= (active.present? && active._id == team.defense._id) ? content_tag(:strong, team.defense.name) : team.defense.name %>
+    <% end %>
   <% end %>
+
 <% end %>
+
 <%= content_tag :td, class: "#{result}-cell" do %>  
   <%= content_tag :div, team.score, class: "score #{result}" %></td>
 <% end %>
