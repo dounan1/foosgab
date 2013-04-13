@@ -7,7 +7,7 @@
     <%= link_to team.offense.name, team.offense if team.offense.present? %>
   <% end %>
   <%= content_tag :td, class: "#{result}-cell" do %>  
-    <%= link_to team.defense.name, team.offense if team.defense.present? %>
+    <%= link_to team.defense.name, team.defense if team.defense.present? %>
   <% end %>
 <% end %>
 <%= content_tag :td, class: "#{result}-cell" do %>  

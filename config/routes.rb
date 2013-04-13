@@ -2,5 +2,5 @@ Foosgab::Application.routes.draw do
   resources :players
   resources :games
 
-  root to: "players#index"
+  root to: "games#index"
 end
