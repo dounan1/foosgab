@@ -43,20 +43,20 @@ class StatsController < ApplicationController
   def bubble_chart
     data_table = GoogleVisualr::DataTable.new
     data_table.new_column('string', 'Player')
-    data_table.new_column('number', 'Games')
     data_table.new_column('number', 'Win %')
+    data_table.new_column('number', 'Games')
     data_table.new_column('string', 'Type')
     data_table.new_column('number', 'Avg. Score')
     
     Player.each do |p|
-      data_table.add_row([p.name, p.games.count, p.win_pct, p.type, p.average_score])
+      data_table.add_row([p.name, p.win_pct, p.games.count, p.type, p.average_score])
     end
   
     opts = {
        :width => 800, :height => 500,
        :title => 'Average Score',
-       :hAxis => { :title => 'games' },
-       :vAxis => { :title => 'win%'  },
+       :hAxis => { :title => 'Win %' },
+       :vAxis => { :title => 'Games'  },
        :bubble => { :textStyle => { :fontSize => 11 } }
      }
      GoogleVisualr::Interactive::BubbleChart.new(data_table, opts)

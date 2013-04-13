@@ -2,6 +2,9 @@ class Game
   include Mongoid::Document
   field :solo, type: Boolean, default: false
   field :date, type: Date
+  field :red_score
+  field :blue_score
+  field :player_ids
 
   embeds_one :red, class_name: 'Team', cascade_callbacks: true
   embeds_one :blue, class_name: 'Team', cascade_callbacks: true
@@ -9,11 +12,18 @@ class Game
   accepts_nested_attributes_for :red, :blue
   validates_presence_of :date
   
-  scope :full, -> { Game.or({'red.score' => 10}, {'blue.score' => 10}) }
-  scope :partial, -> { Game.where({'red.score' => {'$lt' => 10}}).union.where({'blue.score' => {'$lt' => 10}}) }
+  scope :full, -> { Game.or({:red_score => 10}, {:blue_score => 10}) }
+  scope :partial, where(:red_score.lt => 10, :blue_score.lt => 10)
+  scope :with, ->(player) { where(:player_ids => player._id) }
   
   before_create do
     self.date ||= Date.today
+  end
+  
+  before_save do
+    self.red_score = red.score
+    self.blue_score = blue.score
+    self.player_ids = players.map(&:_id)
   end
   
   validate do

@@ -51,4 +51,21 @@ class PlayersController < ApplicationController
     params.require(:player).permit!
     # params.permit!
   end
+  
+  # not done
+  def time_chart
+    data_table = GoogleVisualr::DataTable.new
+    data_table.new_column('string'  , 'Date')
+    data_table.new_column('number'  , 'Win Total')
+    data_table.new_column('number' , 'Loss Total')
+    data_table.new_column('number' , 'Tie Total')
+
+    @player.games.each do |g|
+      # data_table.add_row([ g.date, wins at g.date, losses at g.date, ties at g.date ])
+    end
+ 
+    opts   = { :width => 800, :height => 500, :title => "The decline of 'The 39 Steps'", :vAxis => { :title => 'Accumulated Rating'}, :isStacked => true }
+    GoogleVisualr::Interactive::SteppedAreaChart.new(data_table, opts)
+  end
+
 end
