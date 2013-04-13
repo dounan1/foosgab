@@ -21,9 +21,11 @@
   </thead>
 
   <tbody>
-    <%= render partial: 'games/game', collection: @player.games, locals: {active: @player} %>
+    <%= render partial: 'games/game', collection: @games, locals: { active: @player } %>
   </tbody>
 </table>
+
+<%= paginate @games, theme: 'bootstrap' %>
 
 <%= link_to edit_player_path(@player), class: 'btn' do%><i class="icon icon-pencil"></i> Edit<% end %>
 <%= link_to 'Back', players_path, class: 'btn' %>

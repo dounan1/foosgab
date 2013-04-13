@@ -5,6 +5,8 @@ class Game
   field :red_score
   field :blue_score
   field :player_ids
+  
+  paginates_per 5
 
   embeds_one :red, class_name: 'Team', cascade_callbacks: true
   embeds_one :blue, class_name: 'Team', cascade_callbacks: true

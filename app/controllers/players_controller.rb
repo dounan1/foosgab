@@ -6,7 +6,7 @@ class PlayersController < ApplicationController
   end
 
   def show
-    #
+    @games = @player.games.order_by(date: :desc).page params[:page]
   end
 
   def new
