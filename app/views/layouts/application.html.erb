@@ -17,5 +17,9 @@
   <%= yield %>
 
 <%= yield :javascript %>
+
+<%= content_tag :div, id: 'spinner', class: 'hide' do %>
+  <%= image_tag asset_path('spinny.gif') %>
+<% end %>
 </body>
 </html>
