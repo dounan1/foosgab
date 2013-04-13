@@ -74,6 +74,10 @@ body {
 .score {
   font-weight: bold;
   padding: 5px;
+  border: 2px solid grey;
+  width: 20px;
+  margin: auto;
+  text-align: center;
 }
 
 .winner {
@@ -89,4 +93,16 @@ body {
 .tie {  
   color: black;
   background: gold;
+}
+
+.winner-cell {
+  background: #cdc;
+}
+
+.tie-cell {
+  background: #eee;
+}
+
+.loser-cell {
+  background: #dcc;
 }
