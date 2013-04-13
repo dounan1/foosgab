@@ -14,16 +14,18 @@
   <%= f.input :solo, as: :boolean %>
 
   <%= f.simple_fields_for @game.red do |red| %>
-    <%= red.association :offense, collection: Player.all.map {|p| [p.name, p.id] }, include_blank: false, input_html: { name: 'game[red][offense_id]', id: 'game_red_offense_id' } %>
-    <%= red.association :defense, collection: Player.all.map {|p| [p.name, p.id] }, include_blank: false, input_html: { name: 'game[red][defense_id]', id: 'game_red_defense_id' } %>
+    <%= red.association :offense, collection: Player.all.map { |p| [p.name, p.id] }, include_blank: false, input_html: { name: 'game[red][offense_id]', id: 'game_red_offense_id' } %>
+    <%= red.association :defense, collection: Player.all.map { |p| [p.name, p.id] }, include_blank: false, input_html: { name: 'game[red][defense_id]', id: 'game_red_defense_id' } %>
     <%= red.input :score, as: :slider, input_html: { name: 'game[red][score]', id: 'game_red_score' } %>
   <% end %>
 
   <%= f.simple_fields_for @game.blue do |blue| %>
-    <%= blue.association :offense, collection: Player.all.map {|p| [p.name, p.id] }, include_blank: false, input_html: { name: 'game[blue][offense_id]', id: 'game_blue_offense_id' } %>
-    <%= blue.association :defense, collection: Player.all.map {|p| [p.name, p.id] }, include_blank: false, input_html: { name: 'game[blue][defense_id]', id: 'game_blue_defense_id' } %>
+    <%= blue.association :offense, collection: Player.all.map { |p| [p.name, p.id] }, include_blank: false, input_html: { name: 'game[blue][offense_id]', id: 'game_blue_offense_id' } %>
+    <%= blue.association :defense, collection: Player.all.map { |p| [p.name, p.id] }, include_blank: false, input_html: { name: 'game[blue][defense_id]', id: 'game_blue_defense_id' } %>
     <%= blue.input :score, as: :slider, input_html: { name: 'game[blue][score]', id: 'game_blue_score' } %>
   <% end %>
+  
+  <%= f.input :date %>
 
   <div class="actions">
     <%= f.submit 'Submit', class: 'btn btn-success' %>

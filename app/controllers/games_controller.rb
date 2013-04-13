@@ -2,7 +2,7 @@ class GamesController < ApplicationController
   before_action :set_game, only: [:show, :edit, :update, :destroy]
 
   def index
-    @games = Game.all
+    @games = Game.order_by(date: :desc)
   end
   
   def show
@@ -11,8 +11,7 @@ class GamesController < ApplicationController
   
   def new
     @game = Game.new
-    @game.build_red
-    @game.build_blue
+    @game.build_red and @game.build_blue
   end
   
   def create
@@ -25,7 +24,8 @@ class GamesController < ApplicationController
   end
   
   def update
-    if @game.update(game_params)
+    if @game.update_attributes(game_params)
+      # @game.update_attribute(:date, game_params[:date])
       redirect_to @game, notice: 'Game was successfully updated.'
     else
       render action: 'edit'
@@ -54,7 +54,7 @@ class GamesController < ApplicationController
       params[:game][:blue].delete(:offense_id) and params[:game][:blue].delete(:defense_id)
     end
 
-    params.require(:game).permit(:solo,
+    params.require(:game).permit(:solo, :date,
       {red: [:offense_id, :defense_id, :player_id, :score]},
       {blue: [:offense_id, :defense_id, :player_id, :score]})
   end
