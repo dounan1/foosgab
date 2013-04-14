@@ -25,7 +25,6 @@ class GamesController < ApplicationController
   
   def update
     if @game.update_attributes(game_params)
-      # @game.update_attribute(:date, game_params[:date])
       redirect_to @game, notice: 'Game was successfully updated.'
     else
       render action: 'edit'

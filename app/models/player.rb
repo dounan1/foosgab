@@ -18,6 +18,7 @@ class Player
     # then scope the rest of win/loss/etc as well
     Game.or({ "red.player_id" => _id }, { "red.offense_id" => _id }, { "red.defense_id" => _id },
       { "blue.player_id" => _id }, { "blue.offense_id" => _id }, { "blue.defense_id" => _id })
+    # Game.with(self)
   end
   
   def games_won
@@ -48,6 +49,15 @@ class Player
     total = BigDecimal.new(games.inject(0) { |sum,g| sum + g.team_with_player(self).score })
     played = BigDecimal.new(games.count)
     (total / played).round(2)
+  end
+
+  class << self
+    def wins_by_day(start)
+      wins = games.where(date: start.beginning_of_day..Time.zone.now)
+      orders = orders.group("date(purchased_at)")
+      orders = orders.select("purchased_at, sum(price) as total_price")
+      orders.group_by { |o| o.purchased_at.to_date }
+    end
   end
 
 end

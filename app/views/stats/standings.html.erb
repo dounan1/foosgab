@@ -1,6 +1,9 @@
 <%= content_tag :div, '', id: 'wins_chart' %>
 <%= render_chart(@wins_chart, 'wins_chart') %>
 
+<%= content_tag :div, '', id: 'average_goals_chart' %>
+<%= render_chart(@average_goals_chart, 'average_goals_chart') %>
+
 <%= content_tag :div, '', id: 'wins_share_chart' %>
 <%= render_chart(@wins_share_chart, 'wins_share_chart') %>
 

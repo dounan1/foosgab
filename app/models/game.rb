@@ -16,13 +16,14 @@ class Game
   
   scope :full, -> { Game.or({:red_score => 10}, {:blue_score => 10}) }
   scope :partial, where(:red_score.lt => 10, :blue_score.lt => 10)
-  scope :with, ->(player) { where(:player_ids => player._id) }
+  scope :with, ->(player) { where(player_ids: player._id) }
   
   before_create do
     self.date ||= Date.today
   end
   
   before_save do
+    # duplicate these on the top level because mongoid has issues with scoping embedded documents
     self.red_score = red.score
     self.blue_score = blue.score
     self.player_ids = players.map(&:_id)
@@ -59,4 +60,5 @@ class Game
   def team_with_player(player)
     red.players.include?(player) ? red : blue
   end
+
 end

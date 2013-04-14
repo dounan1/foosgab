@@ -2,6 +2,7 @@ class StatsController < ApplicationController
 
   def standings
     @wins_chart = wins_chart
+    @average_goals_chart = average_goals_chart
     @wins_share_chart = wins_share_chart
     @bubble_chart = bubble_chart
   end
@@ -24,13 +25,22 @@ class StatsController < ApplicationController
   end
 
   def average_goals_chart
-    
+    data_table = GoogleVisualr::DataTable.new
+    data_table.new_columns([{ type: 'string', label: 'Player' },
+                           { type: 'number', label: 'Avg. Goals'}])
+
+    Player.each do |p|
+      data_table.add_row([p.name, p.average_score])
+    end
+ 
+    opts = { width: 640, height: 480, title: 'Average Goals', isStacked: true }
+    GoogleVisualr::Interactive::ColumnChart.new(data_table, opts)
   end
 
   def wins_share_chart
     data_table = GoogleVisualr::DataTable.new
     data_table.new_column('string', 'Player')
-    data_table.new_column('number', 'Hours per Day')
+    data_table.new_column('number', 'Wins')
     
     Player.each do |p|
       data_table.add_row([p.name, p.wins])
