@@ -1,0 +1,18 @@
+<h1>Hey, some stats</h1>
+<div class="row-fluid">  
+  <div class="span6">
+    <%= content_tag :div, '', id: 'games_chart', class: 'chart' %>
+    <%= render_chart(@games_chart, 'games_chart') %>
+  </div>
+  <div class="span6">
+    <%= content_tag :div, '', id: 'average_goals_chart', class: 'chart' %>
+    <%= render_chart(@average_goals_chart, 'average_goals_chart') %>
+  </div>
+</div>
+<div class="row span12">
+  <%= content_tag :div, '', id: 'wins_share_chart', class: 'chart' %>
+  <%= render_chart(@wins_share_chart, 'wins_share_chart') %>
+</div>
+  <%#= content_tag :div, '', id: 'bubble_chart' %>
+  <%#= render_chart(@bubble_chart, 'bubble_chart') %>
+</div>

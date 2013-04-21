@@ -51,13 +51,4 @@ class Player
     (total / played).round(2)
   end
 
-  class << self
-    def wins_by_day(start)
-      wins = games.where(date: start.beginning_of_day..Time.zone.now)
-      orders = orders.group("date(purchased_at)")
-      orders = orders.select("purchased_at, sum(price) as total_price")
-      orders.group_by { |o| o.purchased_at.to_date }
-    end
-  end
-
 end

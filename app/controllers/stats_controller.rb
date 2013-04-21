@@ -1,26 +1,26 @@
 class StatsController < ApplicationController
 
-  def standings
-    @wins_chart = wins_chart
+  def index
+    @games_chart = games_chart
     @average_goals_chart = average_goals_chart
     @wins_share_chart = wins_share_chart
-    @bubble_chart = bubble_chart
+    # @bubble_chart = bubble_chart # this bubble chart makes no sense really
   end
   
   private
   
-  def wins_chart
+  def games_chart
     data_table = GoogleVisualr::DataTable.new
     data_table.new_columns([{ type: 'string', label: 'Player' },
                            { type: 'number', label: 'Wins' },
                            { type: 'number', label: 'Losses' },
                            { type: 'number', label: 'Ties'}])
 
-    Player.each do |p|
+    Player.all.sort_by { |a| a.wins }.reverse.each do |p|
       data_table.add_row([p.name, p.wins, p.losses, p.ties])
     end
  
-    opts = { width: 640, height: 480, title: 'Wins', isStacked: true }
+    opts = { width: 480, height: 360, title: 'Games', isStacked: true }
     GoogleVisualr::Interactive::ColumnChart.new(data_table, opts)
   end
 
@@ -29,11 +29,11 @@ class StatsController < ApplicationController
     data_table.new_columns([{ type: 'string', label: 'Player' },
                            { type: 'number', label: 'Avg. Goals'}])
 
-    Player.each do |p|
+    Player.all.sort { |a,b| b.average_score <=> a.average_score }.each do |p|
       data_table.add_row([p.name, p.average_score])
     end
  
-    opts = { width: 640, height: 480, title: 'Average Goals', isStacked: true }
+    opts = { width: 480, height: 360, title: 'Average Goals', isStacked: true }
     GoogleVisualr::Interactive::ColumnChart.new(data_table, opts)
   end
 
