@@ -27,7 +27,7 @@
     <%= content_tag :div, '', id: 'blue_score_text' %>
   <% end %>
   
-  <%= f.input :date %>
+  <%= f.input :date, input_html: { type: 'date' } %>
 
   <div class="actions">
     <%= f.submit 'Submit', class: 'btn btn-success' %>
