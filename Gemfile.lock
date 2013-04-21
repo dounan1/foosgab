@@ -62,7 +62,9 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.1)
+    daemons (1.1.9)
     erubis (2.7.0)
+    eventmachine (1.0.3)
     execjs (1.4.0)
       multi_json (~> 1.0)
     google_visualr (2.1.7)
@@ -127,6 +129,10 @@ GEM
       activesupport (>= 3.0)
       sprockets (~> 2.8)
     stringex (1.5.1)
+    thin (1.5.1)
+      daemons (>= 1.0.9)
+      eventmachine (>= 0.12.6)
+      rack (>= 1.0.0)
     thor (0.17.0)
     thread_safe (0.1.0)
       atomic
@@ -159,5 +165,6 @@ DEPENDENCIES
   rails (= 4.0.0.beta1)
   sass-rails (~> 4.0.0.beta1)
   simple_form
+  thin
   turbolinks
   uglifier (>= 1.0.3)
