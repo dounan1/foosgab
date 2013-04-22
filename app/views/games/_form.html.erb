@@ -27,7 +27,7 @@
     <%= content_tag :div, '', id: 'blue_score_text' %>
   <% end %>
   
-  <%= f.input :date, input_html: { type: 'date', value: (@game.date or Date.today) } %>
+  <%= f.input :date, input_html: { type: 'date', value: (@game.date or Time.zone.today) } %>
 
   <div class="actions">
     <%= f.submit 'Submit', class: 'btn btn-success' %>
