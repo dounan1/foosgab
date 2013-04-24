@@ -48,7 +48,7 @@ class Player
   def average_score
     total = BigDecimal.new(games.inject(0) { |sum,g| sum + g.team_with_player(self).score })
     played = BigDecimal.new(games.count)
-    (total / played).round(2)
+    (total / (played.nonzero? || 1)).round(2)
   end
 
 end
