@@ -2,3 +2,10 @@ en:
   date:
     formats:
       default: "%m/%d/%Y"
+  mongoid:
+    errors:
+      models:
+        game:
+          attributes:
+            base:
+              unique_players: "players must be unique"

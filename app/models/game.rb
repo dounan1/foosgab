@@ -6,7 +6,7 @@ class Game
   field :blue_score
   field :player_ids
   
-  paginates_per 5
+  paginates_per 10
 
   embeds_one :red, class_name: 'Team', cascade_callbacks: true
   embeds_one :blue, class_name: 'Team', cascade_callbacks: true
@@ -30,7 +30,7 @@ class Game
   end
   
   validate do
-    errors.add(:base, errors.generate_message(:base, :error)) unless unique_players?
+    errors.add(:base, errors.generate_message(:base, :unique_players)) unless unique_players?
   end
   
   def players

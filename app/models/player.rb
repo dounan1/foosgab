@@ -10,7 +10,7 @@ class Player
   def win_pct
     num = BigDecimal.new(wins + 0.5 * ties, 5)
     den = BigDecimal.new(wins + losses + ties)
-    (num / den).round(2)
+    (num / (den.nonzero? || 1)).round(2)
   end
 
   def games
