@@ -7,12 +7,6 @@ class Player
 
   validates_presence_of :name, :type
 
-  def win_pct
-    num = BigDecimal.new(wins + 0.5 * ties, 5)
-    den = BigDecimal.new(wins + losses + ties)
-    (num / (den.nonzero? || 1)).round(2)
-  end
-
   def games
     # move this to a game scope
     # then scope the rest of win/loss/etc as well
@@ -30,7 +24,7 @@ class Player
   end
   
   def games_tied
-    games.select { |g| g.tie? } 
+    games.select { |g| g.tie? }
   end
 
   def wins
@@ -45,10 +39,16 @@ class Player
     games_tied.count
   end
   
+  def win_pct
+    num = BigDecimal.new(wins + 0.5 * ties, 5)
+    den = BigDecimal.new(wins + losses + ties).nonzero? || 1
+    (num / den).round(2)
+  end
+  
   def average_score
     total = BigDecimal.new(games.inject(0) { |sum,g| sum + g.team_with_player(self).score })
-    played = BigDecimal.new(games.count)
-    (total / (played.nonzero? || 1)).round(2)
+    played = BigDecimal.new(games.count).nonzero? || 1
+    (total / played).round(2)
   end
 
 end
