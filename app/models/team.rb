@@ -10,8 +10,12 @@ class Team
   belongs_to :player, inverse_of: nil
 
   validates_presence_of :offense, if: :team?
+  validates_absence_of  :offense, unless: :team?
   validates_presence_of :defense, if: :team?
+  validates_absence_of  :defense, unless: :team?
   validates_presence_of :player, if: :solo?
+  validates_absence_of  :player, unless: :solo?
+
   validates_numericality_of :score
 
   def players
