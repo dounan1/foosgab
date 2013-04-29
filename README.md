@@ -1,4 +1,4 @@
-foosgab
+Foosgab
 =======
 
 A webapp to track foosball scores. Critical to maintaining team morale.
@@ -12,7 +12,15 @@ Setup: (not actually tested)
 * brew install mongodb
 * git clone github://github.com/paulfri/foosgab && cd foosgab
 * bundle install
-* bundle exec rake rails:update:bin
+* bundle exec rake rails:update:bin (if necessary)
 * rails s
+
+Tests: (coverage is pretty bad at the moment)
+* rake
+
+Todo:
+* basic authentication
+* basic caching for stats
+* model tests for games/teams, controller tests, integration tests
 
 Pull requests welcome!
