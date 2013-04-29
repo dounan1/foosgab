@@ -68,6 +68,7 @@ GEM
     eventmachine (1.0.3)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    fabrication (2.6.5)
     google_visualr (2.1.7)
     haml (4.0.2)
       tilt
@@ -167,6 +168,7 @@ DEPENDENCIES
   bootstrap_kaminari
   bson_ext
   coffee-rails (~> 4.0.0.beta1)
+  fabrication
   google_visualr (~> 2.1.0)
   haml
   jquery-rails
