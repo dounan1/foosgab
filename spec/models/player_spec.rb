@@ -1,6 +1,12 @@
 require 'spec_helper'
 
 describe Player do
+  let(:player1) { Fabricate(:player) }
+
+  it 'has a valid factory' do
+    expect(player1).to be_valid
+  end
+
   context 'validates' do
     it 'presence of name' do
       expect(Fabricate.build(:player, name: nil)).to_not be_valid
@@ -12,8 +18,6 @@ describe Player do
   end
 
   context 'games helpers' do
-    let(:player1) { Fabricate(:player) }
-
     context '#games' do
       it 'returns empty when player has no games' do
         expect(player1.games.entries).to be_empty
@@ -72,8 +76,6 @@ describe Player do
   end
 
   context 'stats helpers' do
-    let(:player1) { Fabricate(:player) }
-
     context '#average_score' do
       it 'returns the average score' do
         Fabricate(:solo_game, red: Fabricate.build(:solo, player: player1, score: 6))

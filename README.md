@@ -15,12 +15,12 @@ Setup: (not actually tested)
 * bundle exec rake rails:update:bin (if necessary)
 * rails s
 
-Tests: (coverage is merely lacking at the moment)
+Tests: (coverage is merely adequate at the moment)
 * rake
 
 Todo:
 * basic authentication
 * basic caching for stats
-* model tests for games, controller tests, integration tests
+* controller tests, integration tests
 
 Pull requests welcome!

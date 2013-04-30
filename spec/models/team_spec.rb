@@ -4,6 +4,14 @@ describe Team do
   let(:one_on_one) { Fabricate(:solo_game) }
   let(:two_on_two) { Fabricate(:team_game) }
 
+  it 'has a valid factory in solo games' do
+    expect(one_on_one).to be_valid
+  end
+
+  it 'has a valid factory in team games' do
+    expect(two_on_two).to be_valid
+  end
+
   context 'validates' do
     it 'presence of offense when in a team game' do
       two_on_two.red.offense = nil
