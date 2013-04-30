@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe PlayersController do
   let!(:player) { Fabricate(:player) }
+  let(:player_attributes) { Fabricate.attributes_for(:player) }
+  let(:invalid_player_attributes) { Fabricate.attributes_for(:invalid_player) }
 
   describe 'GET #index' do
     it 'assigns players to @players' do
@@ -27,20 +29,24 @@ describe PlayersController do
   describe 'POST #create' do
     context 'with valid attributes' do
       it 'persists the new player' do
-        expect { post :create, player: Fabricate.attributes_for(:player) }.to change(Player, :count).by(1)
+        expect { post :create, player: player_attributes }.to change(Player, :count).by(1)
       end
       
       it 'redirects to players#index' do
-        post :create, player: Fabricate.attributes_for(:player)
+        post :create, player: player_attributes
         expect(response).to redirect_to(:players)
       end
     end
     
     context 'with invalid attributes' do
       it 'does not persist the new player' do
-        expect { post :create, player: Fabricate.attributes_for(:invalid_player) }.to_not change(Player, :count)
+        expect { post :create, player: invalid_player_attributes }.to_not change(Player, :count)
       end
     end
   end
+
+  # GET edit
+  # PUT/PATCH update
+  # DELETE destroy
 
 end
