@@ -16,7 +16,8 @@ class Team
   validates_presence_of :player, if: :solo?
   validates_absence_of  :player, unless: :solo?
 
-  validates_numericality_of :score
+  validates_numericality_of :score, only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 10
+  validates_presence_of :score
 
   def players
     solo? ? [player] : [offense, defense]
