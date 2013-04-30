@@ -15,7 +15,7 @@ Setup: (not actually tested)
 * bundle exec rake rails:update:bin (if necessary)
 * rails s
 
-Tests: (coverage is merely adequate at the moment)
+Tests:
 * rake
 
 Todo:
