@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <h2><%= @player.name %>'s games</h2>
 
 <%= content_tag :p, "#{pluralize(@player.games.count, 'game')}, with #{pluralize(@player.wins, 'win')}, #{pluralize(@player.losses, 'loss')} and #{pluralize(@player.ties, 'tie')}, and an average score of #{@player.average_score}" %>

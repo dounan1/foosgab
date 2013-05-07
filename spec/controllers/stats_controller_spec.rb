@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe StatsController do
-
   describe 'GET #index' do
     before(:each) do
       get :index
@@ -23,5 +22,4 @@ describe StatsController do
       expect(assigns(:wins_share_chart)).to_not be_nil
     end
   end
-
 end

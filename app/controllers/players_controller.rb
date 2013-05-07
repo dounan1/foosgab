@@ -28,7 +28,7 @@ class PlayersController < ApplicationController
   end
 
   def update
-    if @player.update(player_params)
+    if @player.update_attributes(player_params)
       redirect_to @player, notice: 'Player was successfully updated.'
     else
       render action: 'edit'
@@ -47,9 +47,7 @@ class PlayersController < ApplicationController
   end
 
   def player_params
-    # params.require(:player).permit(:name)
-    params.require(:player).permit!
-    # params.permit!
+    params.require(:player).permit(:name, :type)
   end
   
   # not done

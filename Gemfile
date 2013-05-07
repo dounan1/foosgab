@@ -25,4 +25,6 @@ end
 group :test, :development do
   gem 'rspec-rails'
   gem 'fabrication'
+  gem 'capybara'
+  gem 'poltergeist'
 end
