@@ -16,11 +16,12 @@ Setup: (not actually tested)
 * rails s
 
 Tests:
+* brew install phantomjs
 * rake
 
 Todo:
 * basic authentication
 * basic caching for stats
-* integration tests
+* interesting features!
 
 Pull requests welcome!
