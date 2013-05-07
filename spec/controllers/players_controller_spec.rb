@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe PlayersController do
   let!(:player) { Fabricate(:player) }
-  let(:player_attributes) { Fabricate.attributes_for(:player, name: 'Boris') }
+  let(:player_attributes) { Fabricate.attributes_for(:player) }
   let(:invalid_player_attributes) { Fabricate.attributes_for(:invalid_player) }
 
   describe 'GET #index' do

@@ -10,3 +10,9 @@ Fabricator(:solo_game, from: :game) do
   blue { Fabricate.build(:solo_team) }
   date Date.today
 end
+
+Fabricator(:invalid_game, from: :game) do
+  red { Fabricate.build(:team, offense: nil) }
+  blue { Fabricate.build(:solo_team, score: nil) }
+  date nil
+end

@@ -38,7 +38,7 @@ class Game
   end
   
   def unique_players?
-    players.uniq.length == players.length
+    players.uniq.length == players.length unless red.nil? || blue.nil?
   end
   
   def winner
@@ -58,7 +58,7 @@ class Game
   end
   
   def team_with_player(player)
-    red.players.include?(player) ? red : blue
+    (red.players.include?(player) ? red : blue) unless red.nil? || blue.nil?
   end
 
 end
