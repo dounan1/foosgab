@@ -21,6 +21,6 @@ Tests:
 Todo:
 * basic authentication
 * basic caching for stats
-* controller tests, integration tests
+* integration tests
 
 Pull requests welcome!
