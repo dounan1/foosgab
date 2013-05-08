@@ -1,0 +1,18 @@
+<footer>
+  <div class="container">
+    <hr>
+    <%= content_tag(:p) { debug(params) } if Rails.env.development? %>
+    <div class="row">
+      <div class="span12">
+        <ul>
+          <li><%= nav_link 'Players', players_path %></li>
+          <li><%= nav_link 'Games', games_path %></li>
+          <li><%= nav_link 'Stats', stats_path %></li>
+        </ul>
+        <div class="copyright">
+          &copy; <%= Time.now.year %> The Foosgab Team
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -5,24 +5,25 @@
   <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
   <%= stylesheet_link_tag "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery.ui.all.css" %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <link href='//fonts.googleapis.com/css?family=Noto+Serif' rel='stylesheet' type='text/css'>
+  <link href='//fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
   <%= csrf_meta_tags %>
   <script src='http://www.google.com/jsapi'></script>
 </head>
 <body>
 
+<%= render 'layouts/header' %>
 <div class="container">
-
-  <%= render 'layouts/header' %>
   <%= render 'layouts/flash'  %>
-
   <%= yield %>
-
+</div>
 <%= yield :javascript %>
 
 <%= content_tag :div, id: 'spinner', class: 'hide' do %>
   <%= image_tag asset_path('spinny.gif') %>
 <% end %>
 
-<%= content_tag(:p) { debug(params) } if Rails.env.development? %>
+<%= render 'layouts/footer'  %>
+
 </body>
 </html>

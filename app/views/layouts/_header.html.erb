@@ -1,13 +1,22 @@
-<div class="masthead">
-  <h3 class="muted">Foosgab</h3>
-  <div class="navbar">
-    <div class="navbar-inner">
-      <div class="container">
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="brand" href="<%= root_url %>">foosgab</a>
+
+      <div class="nav-collapse collapse">
         <ul class="nav">
-          <%= nav_link 'Home', root_path %>
           <%= nav_link 'Players', players_path %>
           <%= nav_link 'Games', games_path %>
-          <%= nav_link 'Standings', stats_path %>
+          <%= nav_link 'Stats', stats_path %>
+        </ul>
+        <ul class="nav pull-right">
+          <li><a href="#">Login</a></li>
+          <li><a href="#">Register</a></li>
         </ul>
       </div>
     </div>
