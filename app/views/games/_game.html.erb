@@ -1,11 +1,22 @@
 <% active ||= nil %>
 
 <tr>
-  <td><%= link_to 'Show', game, class: 'btn' %></td>
-  <td><%= l game.date %></td>
-  <%= render 'games/game_team', team: game.red, result: (game.winner.nil? ? 'tie' : (game.winner == game.red) ? 'winner' : 'loser'), active: active %>
-  <%= render 'games/game_team', team: game.blue, result: (game.winner.nil? ? 'tie' : (game.winner == game.blue) ? 'winner' : 'loser'), active: active %>
-  <td><%= link_to edit_game_path(game), class: 'btn' do %><i class="icon icon-pencil"></i> Edit<% end %></td>
-  <td><%= link_to game, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' } do %>
-    <i class="icon icon-white icon-trash"></i> Delete<% end %></td>
+  <td>
+    <%= link_to game, class: 'btn' do %>
+      <i class="icon icon-chevron-right"></i> <span class="visible-widest">Show</span>
+    <% end %>
+  </td>
+  <td class="hidden-phone"><%= l game.date %></td>
+  <%= render 'games/game_team', team: game.red, result: (game.tie? ? 'tie' : (game.winner == game.red) ? 'winner' : 'loser'), active: active %>
+  <%= render 'games/game_team', team: game.blue, result: (game.tie? ? 'tie' : (game.winner == game.blue) ? 'winner' : 'loser'), active: active %>
+  <td class="hidden-phone">
+    <%= link_to edit_game_path(game), class: 'btn btn-info' do %>
+      <i class="icon icon-white icon-pencil"></i> <span class="visible-widest">Edit</span>
+    <% end %>
+  </td>
+  <td>
+    <%= link_to game, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' } do %>
+      <i class="icon icon-white icon-trash"></i> <span class="visible-widest">Delete</span>
+    <% end %>
+  </td>
 </tr>

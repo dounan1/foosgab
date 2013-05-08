@@ -1,20 +1,7 @@
 <h1>Listing games</h1>
 
 <table class="table table-bordered">
-  <thead>
-    <tr>
-      <th>Permalink</th>
-      <th>Date</th>
-      <th>Red Offense</th>
-      <th>Red Defense</th>
-      <th>Red Score</th>
-      <th>Blue Offense</th>
-      <th>Blue Defense</th>
-      <th>Blue Score</th>
-      <th>Edit</th>
-      <th>Delete</th>
-    </tr>
-  </thead>
+  <%= render partial: 'games/table_header' %>
 
   <tbody>
     <%= render partial: 'game', collection: @games %>
