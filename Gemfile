@@ -15,6 +15,8 @@ gem 'kaminari'
 gem 'bootstrap_kaminari'
 gem 'haml' # for that prefab kaminari template, rewrite
 gem 'thin'
+gem 'omniauth-google-oauth2'
+gem 'figaro'
 
 group :assets do
   gem 'sass-rails',   '~> 4.0.0.beta1'

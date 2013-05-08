@@ -15,8 +15,12 @@
           <%= nav_link 'Stats', stats_path %>
         </ul>
         <ul class="nav pull-right">
-          <li><a href="#">Login</a></li>
-          <li><a href="#">Register</a></li>
+          <% if current_user %>
+            <li><%= link_to current_user.name, current_user %></li>
+            <li><%= link_to 'Sign out', signout_path %></li>
+          <% else %>
+            <li><%= link_to 'Sign in', '/auth/google_oauth2' %></li>
+          <% end %>
         </ul>
       </div>
     </div>

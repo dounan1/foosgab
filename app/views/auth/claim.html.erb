@@ -1,0 +1,6 @@
+this is the claim page
+
+<%= form_tag finish_claim_player_path do %>
+  <%= select_tag 'player_id', options_from_collection_for_select(@players, 'id', 'name') %>
+  <%= submit_tag 'Claim', class: 'btn' %>
+<% end %>

@@ -1,8 +1,11 @@
 class Player
   include Mongoid::Document
   include Mongoid::Slug
-  field :name, type: String
-  field :type, type: String
+  field :name,  type: String
+  field :email, type: String
+  field :type,  type: String
+  field :uid,   type: String
+
   slug :name
 
   validates_presence_of :name, :type
