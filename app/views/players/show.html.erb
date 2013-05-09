@@ -8,8 +8,31 @@
   <div class="span3">
     <%= avatar_tag @player %>
     <h3><%= @player.name %></h3>
-    <%= content_tag :p, "#{pluralize(@player.games.count, 'game')}, with #{pluralize(@player.wins, 'win')}, #{pluralize(@player.losses, 'loss')} and #{pluralize(@player.ties, 'tie')}, and an average score of #{@player.average_score}" %>
+    <% if @player.email.present? %>
+      <div class="alert alert-success">
+        <i class="icon icon-ok-sign"></i> This player is confirmed!
+      </div>
+    <% else %>
+      <div class="alert alert-warning">
+        <i class="icon icon-question-sign"></i> This player is unconfirmed.
+      </div>
+    <% end %>
     
+    <hr>
+    <ul class="stat-sheet">
+      <% if can? :email, :player && @player.email.present? %>
+        <i class="icon icon-envelope"></i> <%= link_to @player.email, "mailto:#{@player.email}" %>
+      <% end %>
+
+      <li><i class="icon icon-check"></i> <%= pluralize @player.games.count, 'game' %></li>
+      <li><i class="icon icon-thumbs-up"></i> <%= pluralize @player.wins, 'win' %></li>
+      <li><i class="icon icon-thumbs-down"></i> <%= pluralize @player.losses, 'loss' %></li>
+      <% if @player.ties > 0 %><li><i class="icon icon-hand-right"></i> <%= pluralize @player.losses, 'ties' %></li><% end %>
+      <li><i class="icon icon-flag"></i> <%= @player.average_score %> average score</li>
+    </ul>
+
+    <hr>
+
     <% if can? :update, :player %>
       <%= link_to edit_player_path(@player), class: 'btn' do%>
         <i class="icon icon-pencil"></i> Edit

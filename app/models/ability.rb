@@ -6,11 +6,9 @@ class Ability
   def initialize(player)
     player ||= Player.new
     
-    if player.email && DOMAIN_WHITELIST.include?(player.email.split('@')[1])
-      can :manage, :all
-    else
-      can :read, :all
-    end
+    can :read, :all
+    can :manage, :all if player.email && DOMAIN_WHITELIST.include?(player.email.split('@')[1])
+    can :email, Player if player.persisted?
   end
 
 end
