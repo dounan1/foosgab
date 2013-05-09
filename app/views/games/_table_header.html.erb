@@ -1,6 +1,7 @@
 <thead>
   <tr>
     <th></th>
+    <% if can? :update, :game %><th class="hidden-phone"></th><% end %>
     <th class="hidden-phone">Date</th>
     <th>Red<span class="hidden-phone"> Offense</span></th>
     <th><span class="hidden-phone">Red Defense</span></th>
@@ -8,6 +9,5 @@
     <th>Blue<span class="hidden-phone"> Offense</span></th>
     <th><span class="hidden-phone">Blue Defense</span></th>
     <th class="hidden-phone">Blue Score</th>
-    <th class="hidden-phone"></th>
   </tr>
 </thead>

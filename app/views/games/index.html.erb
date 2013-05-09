@@ -1,4 +1,9 @@
-<h1>Listing games</h1>
+<ul class="breadcrumb">
+  <li><%= link_to 'Foosgab', root_path %> <span class="divider">/</span></li>
+  <li class="active">Games</li>
+</ul>
+
+<h1>Games</h1>
 
 <table class="table table-bordered">
   <%= render partial: 'games/table_header' %>
@@ -10,6 +15,6 @@
 
 <%= paginate @games, theme: 'bootstrap' %>
 
-<br />
-
-<%= link_to 'New game', new_game_path, class: 'btn btn-success' %>
+<% if can?(:create, :game) %>
+  <%= link_to 'New game', new_game_path, class: 'btn btn-success' %>
+<% end %>

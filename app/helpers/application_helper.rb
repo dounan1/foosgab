@@ -7,19 +7,22 @@ module ApplicationHelper
     end
   end
 
-  def avatar_tag(user)
-    if user.avatar_url.present?
-      url = user.avatar_url
+  def avatar_tag(player, opts={})
+    opts[:size] ||= 250
+
+    if player.avatar_url.present?
+      url = player.avatar_url
     else
       default_url = asset_url('default.png')
-      if user.email.present?
-        url = "http://gravatar.com/avatar/#{Digest::MD5::hexdigest(user.email).downcase}.png?s=210"#d=#{CGI.escape(default_url)}"
+      if player.email.present?
+        url = "http://gravatar.com/avatar/#{Digest::MD5::hexdigest(player.email).downcase}.png?s=210"#d=#{CGI.escape(default_url)}"
       else
         url = default_url
       end
     end
 
-    image_tag url, size: '250x250', class: 'avatar'
+    size = opts[:size].to_s + 'x' + opts[:size].to_s
+    link_to image_tag(url, size: size, class: 'avatar'), player
   end
 
 end

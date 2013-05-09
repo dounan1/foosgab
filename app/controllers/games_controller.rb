@@ -16,6 +16,7 @@ class GamesController < ApplicationController
   
   def create
     @game = Game.new(game_params)
+    authorize! :create, @game
     @game.save ? redirect_to(@game) : render(action: :new)
   end
   
@@ -24,6 +25,7 @@ class GamesController < ApplicationController
   end
   
   def update
+    authorize! :update, @game
     if @game.update_attributes(game_params)
       redirect_to @game, notice: 'Game was successfully updated.'
     else
@@ -32,7 +34,7 @@ class GamesController < ApplicationController
   end
 
   def destroy
-    @game = Game.find(params[:id])
+    authorize! :destroy, @game
     @game.destroy
     redirect_to games_path
   end

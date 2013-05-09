@@ -6,12 +6,14 @@
       <i class="icon icon-chevron-right"></i> <span class="visible-widest">Show</span>
     <% end %>
   </td>
+  <% if can? :update, :game %>
+    <td class="hidden-phone">
+      <%= link_to edit_game_path(game), class: 'btn btn-info' do %>
+        <i class="icon icon-white icon-pencil"></i> <span class="visible-widest">Edit</span>
+      <% end %>
+    </td>
+  <% end %>
   <td class="hidden-phone"><%= l game.date %></td>
   <%= render 'games/game_team', team: game.red, result: (game.tie? ? 'tie' : (game.winner == game.red) ? 'winner' : 'loser'), active: active %>
   <%= render 'games/game_team', team: game.blue, result: (game.tie? ? 'tie' : (game.winner == game.blue) ? 'winner' : 'loser'), active: active %>
-  <td class="hidden-phone">
-    <%= link_to edit_game_path(game), class: 'btn btn-info' do %>
-      <i class="icon icon-white icon-pencil"></i> <span class="visible-widest">Edit</span>
-    <% end %>
-  </td>
 </tr>

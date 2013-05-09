@@ -26,6 +26,6 @@
   </tbody>
 </table>
 
-<br />
-
-<%= link_to 'New Player', new_player_path, class: 'btn btn-success' %>
+<% if can? :create, :player %>
+  <%= link_to 'New Player', new_player_path, class: 'btn btn-success' %>
+<% end %>

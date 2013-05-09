@@ -19,6 +19,7 @@ class PlayersController < ApplicationController
 
   def create
     @player = Player.new(player_params)
+    authorize! :create, @player
 
     if @player.save
       redirect_to players_path, notice: 'Player was successfully created.'
@@ -28,6 +29,7 @@ class PlayersController < ApplicationController
   end
 
   def update
+    authorize! :update, @player
     if @player.update_attributes(player_params)
       redirect_to @player, notice: 'Player was successfully updated.'
     else
@@ -36,6 +38,7 @@ class PlayersController < ApplicationController
   end
 
   def destroy
+    authorize! :destroy, @player
     @player.destroy
     redirect_to players_url, notice: 'Player was successfully destroyed.'
   end
@@ -49,21 +52,4 @@ class PlayersController < ApplicationController
   def player_params
     params.require(:player).permit(:name, :type)
   end
-  
-  # not done
-  def time_chart
-    data_table = GoogleVisualr::DataTable.new
-    data_table.new_column('string'  , 'Date')
-    data_table.new_column('number'  , 'Win Total')
-    data_table.new_column('number' , 'Loss Total')
-    data_table.new_column('number' , 'Tie Total')
-
-    @player.games.each do |g|
-      # data_table.add_row([ g.date, wins at g.date, losses at g.date, ties at g.date ])
-    end
- 
-    opts   = { :width => 800, :height => 500, :title => "The decline of 'The 39 Steps'", :vAxis => { :title => 'Accumulated Rating'}, :isStacked => true }
-    GoogleVisualr::Interactive::SteppedAreaChart.new(data_table, opts)
-  end
-
 end

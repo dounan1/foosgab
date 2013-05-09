@@ -1,13 +1,36 @@
-<h1>It's a game</h1>
+<ul class="breadcrumb">
+  <li><%= link_to 'Foosgab', root_path %> <span class="divider">/</span></li>
+  <li><%= link_to 'Games', games_path %> <span class="divider">/</span></li>
+  <li class="active">Game Details</li>
+</ul>
 
-<table class="table table-bordered">
-  <%= render partial: 'games/table_header' %>
+<h1>Game Details</h1>
 
-  <tbody>
-    <%= render 'game', game: @game %>
-  </tbody>
-</table>
+<div class="row">
+  <div class="span3">
+    <h4><%= l @game.date %></h4>
+    <% [:red, :blue].each do |team| %>
+      <div class="well">
+        <h4><%= team.to_s.humanize %>: <%= @game.send(team).score %></h4>
+        <% @game.send(team).players.each do |p| %>
+          <div class="player">
+            <%= avatar_tag p, size: 40 %>
+            <%= link_to p.name, p %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
 
-<%= link_to edit_game_path(@game), class: 'btn' do%><i class="icon icon-pencil"></i> Edit<% end %>
-<%= link_to game_path(@game), class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } do%><i class="icon icon-white icon-trash"></i> Delete<% end %>
-<%= link_to 'Back', games_path, class: 'btn' %>
+  <% if can? :update, :game %>
+    <%= link_to edit_game_path(@game), class: 'btn' do%>
+      <i class="icon icon-pencil"></i> Edit
+    <% end %>
+  <% end %>
+  <% if can? :destroy, :game %>
+    <%= link_to game_path(@game), class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } do %>
+      <i class="icon icon-white icon-trash"></i> Delete
+    <% end %>
+  <% end %>
+  <%= link_to 'Back', games_path, class: 'btn' %>
+  </div>
+</div>

@@ -9,8 +9,18 @@
     <%= avatar_tag @player %>
     <h3><%= @player.name %></h3>
     <%= content_tag :p, "#{pluralize(@player.games.count, 'game')}, with #{pluralize(@player.wins, 'win')}, #{pluralize(@player.losses, 'loss')} and #{pluralize(@player.ties, 'tie')}, and an average score of #{@player.average_score}" %>
-    <%= link_to edit_player_path(@player), class: 'btn' do%><i class="icon icon-pencil"></i> Edit<% end %>
-    <%= link_to player_path(@player), class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } do%><i class="icon icon-white icon-trash"></i> Delete<% end %>
+    
+    <% if can? :update, :player %>
+      <%= link_to edit_player_path(@player), class: 'btn' do%>
+        <i class="icon icon-pencil"></i> Edit
+      <% end %>
+    <% end %>
+    
+    <% if can? :destroy, :player %>
+      <%= link_to player_path(@player), class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } do%>
+        <i class="icon icon-white icon-trash"></i> Delete
+      <% end %>
+    <% end %>
   </div>
 
   <div class="span9">
