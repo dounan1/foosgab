@@ -20,7 +20,7 @@
     
     <hr>
     <ul class="stat-sheet">
-      <% if can? :email, :player && @player.email.present? %>
+      <% if can?(:email, :player) && @player.email.present? %>
         <i class="icon icon-envelope"></i> <%= link_to @player.email, "mailto:#{@player.email}" %>
       <% end %>
 
