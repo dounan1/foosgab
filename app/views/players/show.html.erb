@@ -1,17 +1,42 @@
-<h2><%= @player.name %>'s games</h2>
+<ul class="breadcrumb">
+  <li><%= link_to 'Foosgab', root_path %> <span class="divider">/</span></li>
+  <li><%= link_to 'Players', players_path %> <span class="divider">/</span></li>
+  <li class="active"><%= @player.name %></li>
+</ul>
 
-<%= content_tag :p, "#{pluralize(@player.games.count, 'game')}, with #{pluralize(@player.wins, 'win')}, #{pluralize(@player.losses, 'loss')} and #{pluralize(@player.ties, 'tie')}, and an average score of #{@player.average_score}" %>
+<div class="row">
+  <div class="span3">
+    <%= avatar_tag @player %>
+    <h3><%= @player.name %></h3>
+    <%= content_tag :p, "#{pluralize(@player.games.count, 'game')}, with #{pluralize(@player.wins, 'win')}, #{pluralize(@player.losses, 'loss')} and #{pluralize(@player.ties, 'tie')}, and an average score of #{@player.average_score}" %>
+    <%= link_to edit_player_path(@player), class: 'btn' do%><i class="icon icon-pencil"></i> Edit<% end %>
+    <%= link_to player_path(@player), class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } do%><i class="icon icon-white icon-trash"></i> Delete<% end %>
+  </div>
 
-<table class="table table-bordered">
-  <%= render partial: 'games/table_header' %>
+  <div class="span9">
+    <ul class="nav nav-tabs" id="player-tabs">
+      <li class="active"><a href="#games" data-toggle="tab">Games</a></li>
+      <li><a href="#stats" data-toggle="tab">Stats</a></li>
+    </ul>
 
-  <tbody>
-    <%= render partial: 'games/game', collection: @games, locals: { active: @player } %>
-  </tbody>
-</table>
+    <div class="tab-content">
+      <div class="tab-pane active" id="games">
+        <% if @games.any? %>
+          <table class="table table-bordered">
+            <%= render partial: 'games/table_header' %>
+            <tbody>
+              <%= render partial: 'games/game', collection: @games, locals: { active: @player } %>
+            </tbody>
+          </table>
+          <%= paginate @games, theme: 'bootstrap' %>
+        <% else %>
+          <p>This player hasn't yet played any games.</p>
+        <% end %>
+      </div>
 
-<%= paginate @games, theme: 'bootstrap' %>
-
-<%= link_to edit_player_path(@player), class: 'btn' do%><i class="icon icon-pencil"></i> Edit<% end %>
-<%= link_to player_path(@player), class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } do%><i class="icon icon-white icon-trash"></i> Delete<% end %>
-<%= link_to 'Back', players_path, class: 'btn' %>
+      <div class="tab-pane" id="stats">
+        <p>Implement me!</p>
+      </div>
+    </div>
+  </div>
+</div>

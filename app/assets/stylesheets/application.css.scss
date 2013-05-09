@@ -57,3 +57,14 @@
   background-color: white;
   display: none;
 }
+
+img.avatar {
+  border: 1px solid #ccc;
+  padding: 5px;
+  opacity: .9;
+}
+
+img.avatar:hover {
+  border-color: #aaa;
+  opacity: 1;
+}

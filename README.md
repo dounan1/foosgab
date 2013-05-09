@@ -20,7 +20,9 @@ Tests:
 * rake
 
 Todo:
-* basic authentication
+* tests for authentication
+* roles
+* admin confirmation for signup/domain whitelisting
 * basic caching for stats
 * interesting features!
 

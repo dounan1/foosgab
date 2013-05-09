@@ -1,11 +1,11 @@
 class AuthController < ApplicationController
-
   def google
     player = Player.where(uid: request.env["omniauth.auth"][:uid]).first
-    # raise "#{request.env["omniauth.auth"][:uid]}"
     
     if player.present?
       player.email ||= request.env['omniauth.auth'][:info][:email]
+      player.avatar_url ||= request.env['omniauth.auth'][:info][:image]
+      player.save
       session[:player_id] = player._id
       redirect_to root_url, notice: "You signed in! Here's a cookie."
     else
@@ -25,5 +25,4 @@ class AuthController < ApplicationController
     flash[:success] = "Welcome to Foosgab, #{player.name}! Your account is now claimed."
     redirect_to root_path
   end
-
 end
