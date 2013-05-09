@@ -15,7 +15,7 @@ module ApplicationHelper
     else
       default_url = asset_url('default.png')
       if player.email.present?
-        url = "http://gravatar.com/avatar/#{Digest::MD5::hexdigest(player.email).downcase}.png?s=210"#d=#{CGI.escape(default_url)}"
+        url = "http://gravatar.com/avatar/#{Digest::MD5::hexdigest(player.email).downcase}.png?s=#{opts[:size]}&d=#{CGI.escape(default_url)}"
       else
         url = default_url
       end
