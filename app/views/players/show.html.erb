@@ -68,8 +68,18 @@
       </div>
 
       <div class="tab-pane" id="stats">
-        <p>Implement me!</p>
+        <%= content_tag :div, '', id: 'games_chart', class: 'chart' %>
+        <ul>
+          <li>Solo games: <%= @player.solo_games.count %></li>
+          <li>Team games: <%= @player.team_games.count %></li>
+          <li>Team games as offense: <%= @player.games_as_offense.count %></li>
+          <li>Team games as defense: <%= @player.games_as_defense.count %></li>
+        </ul>
       </div>
     </div>
   </div>
 </div>
+
+<% content_for :javascript do %>
+  <%= render_chart(@games_chart, 'games_chart') %>
+<% end %>

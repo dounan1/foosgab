@@ -7,6 +7,7 @@ class PlayersController < ApplicationController
 
   def show
     @games = @player.games.order_by(date: :desc).page params[:page]
+    @games_chart = @player.games_chart
   end
 
   def new

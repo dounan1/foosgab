@@ -56,6 +56,14 @@ class Game
   def solo?
     solo
   end
+
+  def offenses
+    [red.offense, blue.offense]
+  end
+
+  def defenses
+    [red.defense, blue.defense]
+  end
   
   def team_with_player(player)
     (red.players.include?(player) ? red : blue) unless red.nil? || blue.nil?
