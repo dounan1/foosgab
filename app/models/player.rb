@@ -86,4 +86,15 @@ class Player
     GoogleVisualr::Interactive::PieChart.new(data_table, opts)
   end
 
+  def most_common_partner
+    games.map { |g| g.partner(self) }.compact.mode
+  end
+end
+
+class Array
+  def mode
+    freq = inject(Hash.new(0)) { |h,v| h[v] += 1; h }
+    max = freq.values.max
+    freq.select { |k, f| f == max }.keys
+  end
 end

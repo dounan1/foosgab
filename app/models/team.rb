@@ -34,6 +34,10 @@ class Team
   def team?
     !solo?
   end
+
+  def partner(player)
+    (player == offense ? defense : offense) if team?
+  end
   
   def <=>(other)
     self.score <=> other.score
