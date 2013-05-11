@@ -7,6 +7,13 @@ require 'capybara/rspec'
 require 'capybara/poltergeist'
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
+OmniAuth.config.test_mode = true
+OmniAuth.config.mock_auth[:default] = OmniAuth::AuthHash.new({
+    provider: 'google_oauth2',
+    uid: '77777'
+  })
+OmniAuth.config.mock_auth[:invalid] = :invalid_credentials
+
 Capybara.javascript_driver = :poltergeist
 
 RSpec.configure do |config|

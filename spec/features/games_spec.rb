@@ -7,6 +7,10 @@ feature 'Games' do
   given!(:player3) { Fabricate(:player, name: 'Celes') }
   given!(:player4) { Fabricate(:player, name: 'Sabin') }
 
+  before do 
+    request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:default]
+  end
+
   # TODO: factor out these form steps into a module
   scenario 'creating a new team game', js: true do
     visit games_path
