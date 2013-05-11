@@ -69,7 +69,14 @@ class Game
     (red.players.include?(player) ? red : blue) unless red.nil? || blue.nil?
   end
 
-  def partner(player)
+  def partner_for(player)
     team_with_player(player).partner(player) if !solo && players.include?(player)
+  end
+
+  def opponents_for(player)
+    if players.include?(player)
+      team = team_with_player(player)
+      team == red ? blue.players : red.players
+    end
   end
 end

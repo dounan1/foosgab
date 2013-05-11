@@ -87,7 +87,11 @@ class Player
   end
 
   def most_common_partner
-    games.map { |g| g.partner(self) }.compact.mode
+    games.map { |g| g.partner_for(self) }.compact.mode
+  end
+
+  def most_common_opponent
+    games.map { |g| g.opponents_for(self) }.flatten.compact.mode
   end
 end
 

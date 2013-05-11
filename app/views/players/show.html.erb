@@ -82,6 +82,9 @@
                 <%= @player.most_common_partner.map(&:name).join(', ') %>
               </li>
             <% end %>
+            <li>Most frequent opponent:
+              <%= @player.most_common_opponent.map(&:name).join(', ') %>
+            </li>
           </ul>
         <% end %>
       </div>
