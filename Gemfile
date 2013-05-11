@@ -18,6 +18,8 @@ gem 'thin'
 gem 'omniauth-google-oauth2'
 gem 'figaro'
 gem 'cancan'
+gem 'memcachier'
+gem 'dalli'
 
 group :assets do
   gem 'sass-rails',   '~> 4.0.0.beta1'
