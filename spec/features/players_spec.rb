@@ -1,10 +1,11 @@
 require 'spec_helper'
 
 feature 'Players' do
-  given!(:player) { Fabricate(:player, name: 'Barry') }
+  given!(:player) { Fabricate(:player, name: 'Barry', uid: '77777') }
 
   before do 
-    request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:default]
+    visit root_path
+    click_link 'Sign in'
   end
 
   scenario 'creating a new player' do

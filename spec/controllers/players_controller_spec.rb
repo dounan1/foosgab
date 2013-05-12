@@ -5,6 +5,10 @@ describe PlayersController do
   let(:player_attributes) { Fabricate.attributes_for(:player) }
   let(:invalid_player_attributes) { Fabricate.attributes_for(:invalid_player) }
 
+  before(:each) do
+    Ability.any_instance.stub(:can?).and_return(true)
+  end
+
   describe 'GET #index' do
     before(:each) do
       get :index

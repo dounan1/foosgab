@@ -1,8 +1,12 @@
 require 'spec_helper'
 
-describe GamesController do
+describe GamesController, type: :controller do
   let!(:game) { Fabricate(:game) }
   let(:invalid_game_attributes) { Fabricate.attributes_for(:invalid_game) }
+
+  before(:each) do
+    Ability.any_instance.stub(:can?).and_return(true)
+  end
 
   describe 'GET #index' do
     before(:each) do

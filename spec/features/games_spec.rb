@@ -2,13 +2,14 @@ require 'spec_helper'
 
 feature 'Games' do
   given!(:game) { Fabricate(:game) }
-  given!(:player1) { Fabricate(:player, name: 'Terra') }
+  given!(:player1) { Fabricate(:player, name: 'Terra', uid: '77777') }
   given!(:player2) { Fabricate(:player, name: 'Locke') }
   given!(:player3) { Fabricate(:player, name: 'Celes') }
   given!(:player4) { Fabricate(:player, name: 'Sabin') }
 
   before do 
-    request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:default]
+    visit root_path
+    click_link 'Sign in'
   end
 
   # TODO: factor out these form steps into a module

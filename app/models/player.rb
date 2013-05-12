@@ -11,12 +11,13 @@ class Player
 
   validates_presence_of :name, :type
 
+  before_destroy do
+    games.destroy_all
+  end
+
   def games
-    # move this to a game scope
-    # then scope the rest of win/loss/etc as well
     Game.or({ "red.player_id" => _id }, { "red.offense_id" => _id }, { "red.defense_id" => _id },
       { "blue.player_id" => _id }, { "blue.offense_id" => _id }, { "blue.defense_id" => _id })
-    # Game.with(self)
   end
   
   def games_won

@@ -40,6 +40,7 @@ class PlayersController < ApplicationController
 
   def destroy
     authorize! :destroy, @player
+    session.delete(:player_id) if current_user = @player
     @player.destroy
     redirect_to players_url, notice: 'Player was successfully destroyed.'
   end
