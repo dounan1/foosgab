@@ -4,7 +4,7 @@ Foosgab
 A webapp to track foosball scores. Critical to maintaining team morale.
 
 Requirements:
-* Rails 4.0.0-beta1
+* Rails 4.0.0.rc1
 * MongoDB
 * Ruby (gemfile says 2.0.0 but it'll probably run on 1.9)
 
@@ -16,14 +16,12 @@ Setup: (not actually tested)
 * rails s
 
 Tests:
-* brew install phantomjs
+* brew install phantomjs (for feature specs)
 * rake
 
 Todo:
-* tests for authentication
-* roles
-* admin confirmation for signup/domain whitelisting
-* basic caching for stats
-* interesting features!
+* admin confirmation for non-whitelisted users to get normal authorizations
+* better stats (offense/defense breakdowns)
+* basic caching
 
 Pull requests welcome!
